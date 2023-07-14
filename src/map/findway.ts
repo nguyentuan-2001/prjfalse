@@ -31,7 +31,7 @@ export function findway(map: Map){
     updateOptions(options, startStreetSelect);
     updateOptions(options, endStreetSelect);
 
-    document.getElementById('search-street')?.addEventListener('click', function() {
+    function searchPoint(){
         const startSelect = document.getElementById('start-street') as HTMLSelectElement;
         const endSelect = document.getElementById('end-street') as HTMLSelectElement;
 
@@ -56,6 +56,12 @@ export function findway(map: Map){
         map.setZoom(16.5);
         findPath(startPoint,endPoint,map);
 
+    }
+    document.getElementById('icon__search1')?.addEventListener('click', function() {
+        searchPoint();
+    });
+    document.getElementById('icon__search2')?.addEventListener('click', function() {
+        searchPoint();
     });
 }
 
@@ -111,15 +117,11 @@ function findPath(startPoint: number[], endPoint: number[], map: Map) {
             const calculatedDistance = distance(startp, finish, { units: 'kilometers' });
             const calculatedDistanceInMeters = calculatedDistance * 1000;
             
-            const showIfLength = document.getElementById('if-length') as HTMLElement;
+            const showIfLength = document.getElementById('navigation__child') as HTMLElement;
             showIfLength.style.display= 'block';
-            const ok = document.getElementById("ok_length") as HTMLElement;
-            ok.addEventListener("click", function() {
-                showIfLength.style.display = "none";
-            });
-
+    
             const element = document.getElementById("length_street") as HTMLElement;
-            const datasearch = `Khoảng cách ${calculatedDistanceInMeters.toFixed(2)} m`;
+            const datasearch = `${calculatedDistanceInMeters.toFixed(2)} m`;
             if (element) {
                 element.innerText = datasearch;
             }
@@ -130,7 +132,7 @@ function findPath(startPoint: number[], endPoint: number[], map: Map) {
             const travelTimeInMinutes = travelTimeInHours * 60;
 
             const elements = document.getElementById("time_street") as HTMLElement;
-            const datasearchs = `Thời gian di chuyển: ${travelTimeInMinutes.toFixed(2)} phút`;
+            const datasearchs = `${travelTimeInMinutes.toFixed(2)} phút`;
 
             if (elements) {
                 elements.innerText = datasearchs;
