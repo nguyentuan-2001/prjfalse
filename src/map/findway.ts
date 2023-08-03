@@ -108,13 +108,14 @@ function findPath(startPoint: number[], endPoint: number[], map: Map) {
             }
         });
 
+
         if (nearestPoint && nearestPoint1){
             const pathFinder = new PathFinder(geojson);
             const startp = point(nearestPoint);
             const finish = point(nearestPoint1);
             const path = pathFinder.findPath(startp, finish);
 
-            const calculatedDistance = distance(startp, finish, { units: 'kilometers' });
+            const calculatedDistance = distance(startp, finish,{ units: 'kilometers' });
             const calculatedDistanceInMeters = calculatedDistance * 1000;
             
             const showIfLength = document.getElementById('navigation__child') as HTMLElement;
@@ -184,8 +185,8 @@ function findPath(startPoint: number[], endPoint: number[], map: Map) {
                 }
                 // map.moveLayer('path-layer', 'home-layer');
                 // map.moveLayer('path-layer1', 'home-layer');
-                map.moveLayer('path-layer', '3d-building');
-                map.moveLayer('path-layer1', '3d-building');
+                // map.moveLayer('path-layer', '3d-building');
+                // map.moveLayer('path-layer1', '3d-building');
                 
                 const coordinateStart = [startPoint,nearestPoint];  
                 const checkStart = map.getSource('dasharray1') as any;
